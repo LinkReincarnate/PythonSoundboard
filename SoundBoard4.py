@@ -395,8 +395,7 @@ while True:
                 
                 
         
-        if event.type == JOYHATMOTION:
-            print(event)
+        
         if event.type == JOYDEVICEADDED:
             joysticks = [pygame.joystick.Joystick(i) for i in range(pygame.joystick.get_count())]
             for joystick in joysticks:

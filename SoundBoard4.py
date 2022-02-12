@@ -315,8 +315,9 @@ while True:
                 button28Sound.play(button28NumLoops)
 
             if event.button == 9 and event.instance_id == 2:
-                button29Sound.stop()
-                button29Sound.play(button29NumLoops)
+               # button29Sound.stop()
+                #button29Sound.play(button29NumLoops)
+                pygame.mixer.pause()
 
             if event.button == 0 and event.instance_id == 3:
                 button30Sound.stop()
@@ -582,8 +583,10 @@ while True:
                 
 
             if event.button == 9 and event.instance_id == 2:
-                if button29Hold:
-                    button29Sound.stop()
+               pygame.mixer.unpause()
+               
+                #if button29Hold:
+                   # button29Sound.stop()
                 
 
             if event.button == 0 and event.instance_id == 3:

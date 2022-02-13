@@ -6,7 +6,7 @@ from pygame.locals import *
 from pygame import mixer
 pygame.init()
 pygame.display.set_caption('Soundboard')
-screen = pygame.display.set_mode((500, 500))
+screen = pygame.display.set_mode((50, 50))
 clock = pygame.time.Clock()
 
 

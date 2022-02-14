@@ -42,7 +42,7 @@ button25Sound = mixer.Sound('JSR/Edgy Synth_Get Edgy.wav')
 button26Sound = mixer.Sound('DubstepDrumKit/ewig-11-hihat.mp3')
 button27Sound = mixer.Sound('DubstepDrumKit/ewig-10-kick.mp3')
 button28Sound = mixer.Sound('DubstepDrumKit/ewig-12-snare.mp3')
-button29Sound = mixer.Sound('JSR/Horn Hit.wav')
+#button29Sound = mixer.Sound('JSR/Horn Hit.wav')
 
 button30Sound = mixer.Sound('JSR/scratch that.wav')
 button31Sound = mixer.Sound('JSR/Modern Rock Guitar 26_What U Need.wav')

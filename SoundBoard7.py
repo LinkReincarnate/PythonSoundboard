@@ -134,9 +134,9 @@ button32NumLoops = -1
 button33NumLoops = -1
 button34NumLoops = -1
 button35NumLoops = -1
-button36NumLoops = 0
-button37NumLoops = 0
-button38NumLoops = 0
+button36NumLoops = -1
+button37NumLoops = -1
+button38NumLoops = -1
 #button39NumLoops = 0
 
 #if hold is True button only plays when held down
@@ -177,9 +177,9 @@ button32Hold = True
 button33Hold = True
 button34Hold = True
 button35Hold = True
-button36Hold = False
-button37Hold = False
-button38Hold = False
+button36Hold = True
+button37Hold = True
+button38Hold = True
 #button39Hold = True
 
 

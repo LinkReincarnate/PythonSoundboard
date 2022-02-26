@@ -29,7 +29,7 @@ buttons[0][0]["Sound"].set_volume(1)
 
 buttons[0][1] = {}
 buttons[0][1]["IsPlaying"] = False
-buttons[0][1]["Hold"] = True
+buttons[0][1]["Hold"] = False
 buttons[0][1]["IsMutable"] = True
 buttons[0][1]["NumLoops"] = -1 
 buttons[0][1]["Sound"] = mixer.Sound('Loops/130BPM/ET_130_C_UKGPercLoop_4bars_Beats_130BPM_BANDLAB.wav')

@@ -353,7 +353,7 @@ while True:
 					buttons[instance_id][button_id]["Sound"].stop()
 					buttons[instance_id][button_id]["IsPlaying"] = False
 				else:
-					buttons[instance_id][button_id]["Sound"].play(buttons[0][button_id]["NumLoops"])
+					buttons[instance_id][button_id]["Sound"].play(buttons[instance_id][button_id]["NumLoops"])
 					buttons[instance_id][button_id]["IsPlaying"] = True
 			elif button_id == 9 and instance_id == 2:
 				pygame.mixer.pause()

@@ -112,7 +112,7 @@ buttons[1][0]["Hold"] = False
 buttons[1][0]["IsMutable"] = True
 buttons[1][0]["NumLoops"] = -1 
 buttons[1][0]["Toggle"] = True
-buttons[1][0]["Sound"] = mixer.Sound('Loops/130BPM/Chill03_85_Drumloop4_8bar_BANDLAB.wav')
+buttons[1][0]["Sound"] = mixer.Sound('Loops/130BPM/YouBrokeMe_130_Fm_Kick_BANDLAB.wav')
 
 buttons[1][1] = {}
 buttons[1][1]["IsPlaying"] = False
@@ -120,7 +120,7 @@ buttons[1][1]["Hold"] = False
 buttons[1][1]["IsMutable"] = True
 buttons[1][1]["NumLoops"] = -1 
 buttons[1][1]["Toggle"] = True
-buttons[1][1]["Sound"] = mixer.Sound('Loops/120BPM/Malarkey_120_Am_VoxChop_4bar_BANDLAB.wav')
+buttons[1][1]["Sound"] = mixer.Sound('Loops/130BPM/YouBrokeMe_130_Fm_RetroSnare_BANDLAB.wav')
 
 buttons[1][2] = {}
 buttons[1][2]["IsPlaying"] = False
@@ -128,7 +128,7 @@ buttons[1][2]["Hold"] = False
 buttons[1][2]["IsMutable"] = True
 buttons[1][2]["NumLoops"] = -1 
 buttons[1][2]["Toggle"] = True
-buttons[1][2]["Sound"] = mixer.Sound('Loops/120BPM/Cartridge_Chords_05_Chords_120BPM_Aminor_BANDLAB.wav')
+buttons[1][2]["Sound"] = mixer.Sound('Loops/130BPM/YouBrokeMe_130_Fm_Bass_BANDLAB.wav')
 
 buttons[1][3] = {}
 buttons[1][3]["IsPlaying"] = False
@@ -136,7 +136,7 @@ buttons[1][3]["Hold"] = False
 buttons[1][3]["IsMutable"] = True
 buttons[1][3]["NumLoops"] = -1 
 buttons[1][3]["Toggle"] = True
-buttons[1][3]["Sound"] = mixer.Sound('Loops/120BPM/Malarkey_120_Am_Lead2_4bar_BANDLAB.wav')
+buttons[1][3]["Sound"] = mixer.Sound('Loops/130BPM/YouBrokeMe_130_Fm_Strings_BANDLAB.wav')
 
 buttons[1][4] = {}
 buttons[1][4]["IsPlaying"] = False
@@ -144,7 +144,7 @@ buttons[1][4]["Hold"] = False
 buttons[1][4]["IsMutable"] = True
 buttons[1][4]["NumLoops"] = -1 
 buttons[1][4]["Toggle"] = True
-buttons[1][4]["Sound"] = mixer.Sound('Loops/120BPM/PensiveMoments_Strings_121bpm_B_BANDLAB.wav')
+buttons[1][4]["Sound"] = mixer.Sound('Loops/130BPM/YouBrokeMe_130_Fm_NylonGuitar_BANDLAB.wav')
 
 buttons[1][5] = {}
 buttons[1][5]["IsPlaying"] = False
@@ -152,7 +152,7 @@ buttons[1][5]["Hold"] = False
 buttons[1][5]["IsMutable"] = True
 buttons[1][5]["NumLoops"] = -1 
 buttons[1][5]["Toggle"] = True
-buttons[1][5]["Sound"] = mixer.Sound('Loops/120BPM/BigBrassBand_Chords_150bpm_Bbmin_BANDLAB.wav')
+buttons[1][5]["Sound"] = mixer.Sound('Loops/130BPM/YouBrokeMe_130_Fm_HighNylon_BANDLAB.wav')
 
 buttons[1][6] = {}
 buttons[1][6]["IsPlaying"] = False
@@ -160,7 +160,7 @@ buttons[1][6]["Hold"] = False
 buttons[1][6]["IsMutable"] = True
 buttons[1][6]["NumLoops"] = -1 
 buttons[1][6]["Toggle"] = True
-buttons[1][6]["Sound"] = mixer.Sound('DubstepDrumKit/dubstep-club-a-hat.mp3')
+buttons[1][6]["Sound"] = mixer.Sound('Loops/130BPM/YouBrokeMe_130_Fm_MoonGuitar_BANDLAB.wav')
 
 buttons[1][7] = {}
 buttons[1][7]["IsPlaying"] = False
@@ -168,7 +168,7 @@ buttons[1][7]["Hold"] = False
 buttons[1][7]["IsMutable"] = True
 buttons[1][7]["NumLoops"] = -1 
 buttons[1][7]["Toggle"] = True
-buttons[1][7]["Sound"] = mixer.Sound('DubstepDrumKit/dubstep-club-a-kick.mp3')
+buttons[1][7]["Sound"] = mixer.Sound('Loops/130BPM/YouBrokeMe_130_Fm_LowFlute_BANDLAB.wav')
 
 buttons[1][8] = {}
 buttons[1][8]["IsPlaying"] = False
@@ -176,7 +176,7 @@ buttons[1][8]["Hold"] = False
 buttons[1][8]["IsMutable"] = True
 buttons[1][8]["NumLoops"] = -1 
 buttons[1][8]["Toggle"] = True
-buttons[1][8]["Sound"] = mixer.Sound('DubstepDrumKit/dubstep-club-a-snare.mp3')
+buttons[1][8]["Sound"] = mixer.Sound('Loops/130BPM/YouBrokeMe_130_Fm_HighFlute_BANDLAB.wav')
 
 buttons[1][9] = {}
 buttons[1][9]["IsPlaying"] = False

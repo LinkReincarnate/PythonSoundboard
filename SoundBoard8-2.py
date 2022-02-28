@@ -22,7 +22,8 @@ buttons = [[None] * 100  , [None] * 100  , [None] * 100  , [None] * 100  ]
 @dataclass
 class Button:
     Sound : ...
-    State : bool = False     # If the sound is being played
+    State   : bool = False     # If the sound is being played
+    Toggled : bool = False     # Was the sound toggled on - If so `State = True` until it's toggled back off
     IsMuteable : bool = True 
     NumLoops : int = -1
     Toggle : bool = False
@@ -124,16 +125,21 @@ while True:
                         button = buttons[event.instance_id][event.button]
                         if in_toggle_mode: # In toggle mode just toggle state
                             if button_state: # Ignore button up
-                                button.State = not button.State # Flip state
+                                button.Toggled = not button.Toggled # Flip state
+                                button.State = button.Toggled
                                 if button.State: 
                                     button.Sound.play(button.NumLoops)
                                 else: 
                                     button.Sound.stop()
                         else:
-                            button.State = button_state
-                            button.Sound.stop()
-                            if button.State:
+                            if button.Toggled: # If button was toggled on just restart it
+                                button.Sound.stop()
                                 button.Sound.play(button.NumLoops)
+                            else: # Otherwise deal with state change
+                                button.State = button_state
+                                button.Sound.stop()
+                                if button.State:
+                                    button.Sound.play(button.NumLoops)
 
             case pygame.JOYDEVICEADDED:
                 joysticks = [pygame.joystick.Joystick(i) for i in range(pygame.joystick.get_count())]

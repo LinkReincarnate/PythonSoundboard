@@ -1,20 +1,15 @@
-from ast import match_case
-from email.policy import default
 import sys
-
 import pygame
 import pprint
-
 from pygame.locals import *
 from pygame import mixer
+from dataclasses import dataclass
+
+# Init pygame
 pygame.init()
 pygame.display.set_caption('Soundboard')
 screen = pygame.display.set_mode((500, 500))
 clock = pygame.time.Clock()
-
-from dataclasses import dataclass
-
-buttons = [[None] * 100  , [None] * 100  , [None] * 100  , [None] * 100  ]
 
 # IsPlaying toggles sound if looping is true and hold is false
 # if Hold is True, button only plays when held down
@@ -30,8 +25,8 @@ class Button:
     def __init__(self, soundPath):
         self.Sound = mixer.Sound(soundPath)
 
-
-buttons = [
+# Sound Buttons - Main array index is the joystick instance_id, inner array is the button id
+sound_buttons = [
     [
         Button('Loops/130BPM/ET_130_C_UKGSnareLoop_4bars_Beats_130BPM_BANDLAB.wav'),
         Button('Loops/130BPM/ET_130_C_UKGPercLoop_4bars_Beats_130BPM_BANDLAB.wav'),
@@ -94,63 +89,63 @@ pprint.pprint(joysticks)
 pygame.font.init()
 font = pygame.font.SysFont('Comic Sans MS', 30) 
 
+# event - The pygame event
+# button_state - True if "down", False if "up"
+def process_button_event(event, button_state):
+    global in_toggle_mode
+
+    if event.button == 9 and event.instance_id == 2: # Pause/unpause mixer
+        if button_state:
+            pygame.mixer.pause()
+        else:
+            pygame.mixer.unpause()
+            
+    elif event.button == 9 and event.instance_id == 3: # Mute/unmute all
+        for row in sound_buttons:
+            for button in row:
+                if button.IsMuteable:
+                    button.Sound.set_volume(1 if button_state else 0)
+
+    elif event.button == 9 and event.instance_id == 0: # Toggle toggle_mode state
+        in_toggle_mode = button_state
+
+    else:
+        try:
+            button = sound_buttons[event.instance_id][event.button]
+            if in_toggle_mode: # In toggle mode just toggle state
+                if button_state: # Ignore button up
+                    button.State = not button.State # Flip state
+                    if button.State: 
+                        button.Sound.play(button.NumLoops)
+                    else: 
+                        button.Sound.stop()
+            else:
+                button.State = button_state
+                button.Sound.stop()
+                if button.State:
+                    button.Sound.play(button.NumLoops)
+        except IndexError:
+            print(f"Button {event.button} [instance_id: {event.instance_id}]not yet implemented!")
+
+
+# Main render loop
 while True:
+    # Render toggle mode text
     screen.fill((0, 0, 0))
     screen.blit(font.render(f"in_toggle_mode: {in_toggle_mode}", True, (255, 255, 255)), (0,0))
+
+    # Process pygame events
     for event in pygame.event.get():
-        match event.type:
-            case pygame.JOYBUTTONDOWN | pygame.JOYBUTTONUP:
-                print(event)
+        if event.type == pygame.JOYBUTTONDOWN or event.type == pygame.JOYBUTTONUP: # Process button event
+            process_button_event(event, event.type == pygame.JOYBUTTONDOWN)
 
-                button_state = event.type == pygame.JOYBUTTONDOWN # Now, `button_state` is going to be `True`` if the button was pressed down, otherwise `False`.
+        elif event.type == pygame.JOYDEVICEADDED or event.type == pygame.JOYDEVICEREMOVED: # Update joysticks
+            joysticks = [pygame.joystick.Joystick(i) for i in range(pygame.joystick.get_count())]
+            
+        elif event.type == pygame.QUIT or (event.type == pygame.KEYDOWN and event.key == pygame.K_ESCAPE): # Quit if event is QUIT or if ESCAPE is pressed
+            pygame.quit()
+            sys.exit()
 
-                match (event.button, event.instance_id): 
-                    case (9, 2):  # Pause/unpause mixer
-                        if button_state:
-                            pygame.mixer.pause()
-                        else:
-                            pygame.mixer.unpause()
-
-                    case (9, 3): # Mute/Unmute all
-                        for row in buttons:
-                            for button in row:
-                                if button.IsMuteable:
-                                    button.Sound.set_volume(1 if button_state else 0)
-
-                    case (9, 0): # Toggle mode enable - TODO: Change back instance id to 1
-                        in_toggle_mode = button_state
-
-                    case _: # Handle it as a button
-                        button = buttons[event.instance_id][event.button]
-                        if in_toggle_mode: # In toggle mode just toggle state
-                            if button_state: # Ignore button up
-                                button.State = not button.State # Flip state
-                                if button.State: 
-                                    button.Sound.play(button.NumLoops)
-                                else: 
-                                    button.Sound.stop()
-                        else:
-                            button.State = button_state
-                            button.Sound.stop()
-                            if button.State:
-                                button.Sound.play(button.NumLoops)
-
-            case pygame.JOYDEVICEADDED:
-                joysticks = [pygame.joystick.Joystick(i) for i in range(pygame.joystick.get_count())]
-                for joystick in joysticks:
-                    print(joystick.get_name())
-
-            case pygame.JOYDEVICEREMOVED:
-                joysticks = [pygame.joystick.Joystick(i) for i in range(pygame.joystick.get_count())]
-
-            case pygame.QUIT:
-                pygame.quit()
-                sys.exit()
-
-            case pygame.KEYDOWN:
-                if event.key == pygame.K_ESCAPE:
-                    pygame.quit()
-                    sys.exit()
-
+    # Update pygame
     pygame.display.update()
     clock.tick(60)

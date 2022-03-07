@@ -110,7 +110,7 @@ def process_button_event(event, button_state):
         for row in sound_buttons:
             for button in row:
                 if button.IsMuteable:
-                    button.Sound.set_volume(1 if button_state else 0)
+                    button.Sound.set_volume(0 if button_state else 1)
 
     elif event.button == 9 and event.instance_id == 0: # Toggle toggle_mode state
         in_toggle_mode = button_state
@@ -122,9 +122,9 @@ def process_button_event(event, button_state):
                 if button_state: # Ignore button up
                     button.State = not button.State # Flip state
                     if button.State: 
-                        button.Sound.play(button.NumLoops)
-                    else: 
                         button.Sound.stop()
+                    else: 
+                        button.Sound.play(button.NumLoops)
             else:
                 button.State = button_state
                 button.Sound.stop()

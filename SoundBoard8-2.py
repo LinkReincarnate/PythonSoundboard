@@ -17,7 +17,8 @@ clock = pygame.time.Clock()
 @dataclass
 class SoundButton:
     Sound : ...
-    State : bool = False     # If the sound is being played
+    State   : bool = False     # If the sound is being played
+    Toggled : bool = False     # Was the sound toggled on - If so `State = True` until it's toggled back off
     IsMuteable : bool = True 
     NumLoops : int = -1
     Toggle : bool = False

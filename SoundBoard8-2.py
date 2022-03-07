@@ -78,6 +78,9 @@ sound_buttons = [
 # If the toggle mode is on right now
 in_toggle_mode = False
 
+# If the mixer is paused right now
+is_mixer_paused = False
+
 pygame.joystick.init()
 joysticks = [pygame.joystick.Joystick(i) for i in range(pygame.joystick.get_count())]
 for joystick in joysticks:
@@ -93,9 +96,11 @@ font = pygame.font.SysFont('Comic Sans MS', 30)
 # button_state - True if "down", False if "up"
 def process_button_event(event, button_state):
     global in_toggle_mode
+    global is_mixer_paused
 
     if event.button == 9 and event.instance_id == 2: # Pause/unpause mixer
-        if button_state:
+        is_mixer_paused = not is_mixer_paused
+        if is_mixer_paused:
             pygame.mixer.pause()
         else:
             pygame.mixer.unpause()
@@ -125,7 +130,7 @@ def process_button_event(event, button_state):
                 if button.State:
                     button.Sound.play(button.NumLoops)
         except IndexError:
-            print(f"Button {event.button} [instance_id: {event.instance_id}]not yet implemented!")
+            print(f"Button {event.button} [instance_id: {event.instance_id}] not yet implemented!")
 
 
 # Main render loop

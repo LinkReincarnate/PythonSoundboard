@@ -15,7 +15,7 @@ clock = pygame.time.Clock()
 # if Hold is True, button only plays when held down
 # -1 for infinite looping any other int for that number of loops plus one
 @dataclass
-class Button:
+class SoundButton:
     Sound : ...
     State : bool = False     # If the sound is being played
     IsMuteable : bool = True 
@@ -28,50 +28,50 @@ class Button:
 # Sound Buttons - Main array index is the joystick instance_id, inner array is the button id
 sound_buttons = [
     [
-        Button('Loops/130BPM/ET_130_C_UKGSnareLoop_4bars_Beats_130BPM_BANDLAB.wav'),
-        Button('Loops/130BPM/ET_130_C_UKGPercLoop_4bars_Beats_130BPM_BANDLAB.wav'),
-        Button('Loops/130BPM/ET_130_C_UKGKickLoop_4bars_Beats_130BPM_BANDLAB.wav'),
-        Button('Loops/130BPM/ET_130_C_UKGHatLoop_4bars_Beats_130BPM_BANDLAB.wav'),
-        Button('Loops/130BPM/Gold_108_Emin_SynthPad01_4bar_BANDLAB.wav'),
-        Button('Loops/130BPM/Gold_108_Emin_LeadPad_4bar_BANDLAB.wav'),
-        Button('Loops/130BPM/Gold_108_Emin_SubBass1_4bar_BANDLAB.wav'),
-        Button('Loops/130BPM/ts_128_Em_Pad_LoFi_8bars_BANDLAB.wav'),
-        Button('Loops/130BPM/Chill03_85_Em_EPChords6_8bar_BANDLAB.wav'),
-        Button('Loops/130BPM/Chill04_90_Em_VinylNoise_4bar_Fx_BANDLAB.wav'),
+        SoundButton('Loops/130BPM/ET_130_C_UKGSnareLoop_4bars_Beats_130BPM_BANDLAB.wav'),
+        SoundButton('Loops/130BPM/ET_130_C_UKGPercLoop_4bars_Beats_130BPM_BANDLAB.wav'),
+        SoundButton('Loops/130BPM/ET_130_C_UKGKickLoop_4bars_Beats_130BPM_BANDLAB.wav'),
+        SoundButton('Loops/130BPM/ET_130_C_UKGHatLoop_4bars_Beats_130BPM_BANDLAB.wav'),
+        SoundButton('Loops/130BPM/Gold_108_Emin_SynthPad01_4bar_BANDLAB.wav'),
+        SoundButton('Loops/130BPM/Gold_108_Emin_LeadPad_4bar_BANDLAB.wav'),
+        SoundButton('Loops/130BPM/Gold_108_Emin_SubBass1_4bar_BANDLAB.wav'),
+        SoundButton('Loops/130BPM/ts_128_Em_Pad_LoFi_8bars_BANDLAB.wav'),
+        SoundButton('Loops/130BPM/Chill03_85_Em_EPChords6_8bar_BANDLAB.wav'),
+        SoundButton('Loops/130BPM/Chill04_90_Em_VinylNoise_4bar_Fx_BANDLAB.wav'),
     ],
     [
-        Button('Loops/130BPM/YouBrokeMe_130_Fm_Kick_BANDLAB.wav'),
-        Button('Loops/130BPM/YouBrokeMe_130_Fm_RetroSnare_BANDLAB.wav'),
-        Button('Loops/130BPM/YouBrokeMe_130_Fm_Bass_BANDLAB.wav'),
-        Button('Loops/130BPM/YouBrokeMe_130_Fm_Strings_BANDLAB.wav'),
-        Button('Loops/130BPM/YouBrokeMe_130_Fm_NylonGuitar_BANDLAB.wav'),
-        Button('Loops/130BPM/YouBrokeMe_130_Fm_HighNylon_BANDLAB.wav'),
-        Button('Loops/130BPM/YouBrokeMe_130_Fm_MoonGuitar_BANDLAB.wav'),
-        Button('Loops/130BPM/YouBrokeMe_130_Fm_LowFlute_BANDLAB.wav'),
-        Button('Loops/130BPM/YouBrokeMe_130_Fm_HighFlute_BANDLAB.wav'),
-        Button('Loops/120BPM/Malarkey_120_Am_Piano3_4bar_BANDLAB.wav'),
+        SoundButton('Loops/130BPM/YouBrokeMe_130_Fm_Kick_BANDLAB.wav'),
+        SoundButton('Loops/130BPM/YouBrokeMe_130_Fm_RetroSnare_BANDLAB.wav'),
+        SoundButton('Loops/130BPM/YouBrokeMe_130_Fm_Bass_BANDLAB.wav'),
+        SoundButton('Loops/130BPM/YouBrokeMe_130_Fm_Strings_BANDLAB.wav'),
+        SoundButton('Loops/130BPM/YouBrokeMe_130_Fm_NylonGuitar_BANDLAB.wav'),
+        SoundButton('Loops/130BPM/YouBrokeMe_130_Fm_HighNylon_BANDLAB.wav'),
+        SoundButton('Loops/130BPM/YouBrokeMe_130_Fm_MoonGuitar_BANDLAB.wav'),
+        SoundButton('Loops/130BPM/YouBrokeMe_130_Fm_LowFlute_BANDLAB.wav'),
+        SoundButton('Loops/130BPM/YouBrokeMe_130_Fm_HighFlute_BANDLAB.wav'),
+        SoundButton('Loops/120BPM/Malarkey_120_Am_Piano3_4bar_BANDLAB.wav'),
     ],
     [
-        Button('Loops/130BPM/Toxic_130_Gm_Trumpet_BANDLAB.wav'),
-        Button('Loops/130BPM/Toxic_130_Gm_LongTrumpet_BANDLAB.wav'),
-        Button('Loops/130BPM/Toxic_130_Gm_Saxophone_BANDLAB.wav'),
-        Button('Loops/130BPM/Toxic_130_Gm_RetroPiano_BANDLAB.wav'),
-        Button('Loops/130BPM/Toxic_130_Gm_LeadKey_BANDLAB.wav'),
-        Button('Loops/130BPM/Toxic_130_Gm_GrandPiano_BANDLAB.wav'),
-        Button('Loops/130BPM/Vox_BB_127_Emin_pluck_vocal_8_4_4_BANDLAB.wav'),
-        Button('Loops/130BPM/Synth_BB_120_Emin_synth_4_BANDLAB.wav'),
-        Button('Loops/130BPM/Keys_BB_140_Fmin_keys_synth_8_4_4_BANDLAB.wav'),
+        SoundButton('Loops/130BPM/Toxic_130_Gm_Trumpet_BANDLAB.wav'),
+        SoundButton('Loops/130BPM/Toxic_130_Gm_LongTrumpet_BANDLAB.wav'),
+        SoundButton('Loops/130BPM/Toxic_130_Gm_Saxophone_BANDLAB.wav'),
+        SoundButton('Loops/130BPM/Toxic_130_Gm_RetroPiano_BANDLAB.wav'),
+        SoundButton('Loops/130BPM/Toxic_130_Gm_LeadKey_BANDLAB.wav'),
+        SoundButton('Loops/130BPM/Toxic_130_Gm_GrandPiano_BANDLAB.wav'),
+        SoundButton('Loops/130BPM/Vox_BB_127_Emin_pluck_vocal_8_4_4_BANDLAB.wav'),
+        SoundButton('Loops/130BPM/Synth_BB_120_Emin_synth_4_BANDLAB.wav'),
+        SoundButton('Loops/130BPM/Keys_BB_140_Fmin_keys_synth_8_4_4_BANDLAB.wav'),
     ],
     [
-        Button('Loops/130BPM/PT_135_Cm_Arp_04_8bars_BANDLAB.wav'),
-        Button('Loops/130BPM/Kit2_LeadChords3_C_128_8bar_BANDLAB.wav'),
-        Button('Loops/130BPM/Kit2_LeadChords2_C_128_8bar_BANDLAB.wav'),
-        Button('Loops/130BPM/Kit2_LeadChords1_C_128_8bar_BANDLAB.wav'),
-        Button('Loops/130BPM/Kit2_LeadChords_C_128_4bar_BANDLAB.wav'),
-        Button('Loops/130BPM/Kit2_LeadSynth1_C_128_8bar_BANDLAB.wav'),
-        Button('Loops/130BPM/Kit2_FilterChords_C_128_4bar_BANDLAB.wav'),
-        Button('Loops/130BPM/NM_Mux_Kick_124_BANDLAB.wav'),
-        Button('Loops/130BPM/DMH_Kit_01_DR_TopLoop_01_126bpm_BANDLAB.wav'),
+        SoundButton('Loops/130BPM/PT_135_Cm_Arp_04_8bars_BANDLAB.wav'),
+        SoundButton('Loops/130BPM/Kit2_LeadChords3_C_128_8bar_BANDLAB.wav'),
+        SoundButton('Loops/130BPM/Kit2_LeadChords2_C_128_8bar_BANDLAB.wav'),
+        SoundButton('Loops/130BPM/Kit2_LeadChords1_C_128_8bar_BANDLAB.wav'),
+        SoundButton('Loops/130BPM/Kit2_LeadChords_C_128_4bar_BANDLAB.wav'),
+        SoundButton('Loops/130BPM/Kit2_LeadSynth1_C_128_8bar_BANDLAB.wav'),
+        SoundButton('Loops/130BPM/Kit2_FilterChords_C_128_4bar_BANDLAB.wav'),
+        SoundButton('Loops/130BPM/NM_Mux_Kick_124_BANDLAB.wav'),
+        SoundButton('Loops/130BPM/DMH_Kit_01_DR_TopLoop_01_126bpm_BANDLAB.wav'),
     ]
 ]
 

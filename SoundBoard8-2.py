@@ -118,25 +118,28 @@ def process_button_event(event, button_state):
         except IndexError:
             print(f"Button {event.button} [instance_id: {event.instance_id}] not yet implemented!")
 
+def main():
+	# Main render loop
+	while True:
+		# Render toggle mode text
+		screen.fill((0, 0, 0))
+		screen.blit(font.render(f"in_toggle_mode: {in_toggle_mode}", True, (255, 255, 255)), (0,0))
 
-# Main render loop
-while True:
-    # Render toggle mode text
-    screen.fill((0, 0, 0))
-    screen.blit(font.render(f"in_toggle_mode: {in_toggle_mode}", True, (255, 255, 255)), (0,0))
+		# Process pygame events
+		for event in pygame.event.get():
+			if event.type == pygame.JOYBUTTONDOWN or event.type == pygame.JOYBUTTONUP: # Process button event
+				process_button_event(event, event.type == pygame.JOYBUTTONDOWN)
 
-    # Process pygame events
-    for event in pygame.event.get():
-        if event.type == pygame.JOYBUTTONDOWN or event.type == pygame.JOYBUTTONUP: # Process button event
-            process_button_event(event, event.type == pygame.JOYBUTTONDOWN)
+			elif event.type == pygame.JOYDEVICEADDED or event.type == pygame.JOYDEVICEREMOVED: # Update joysticks
+				joysticks = [pygame.joystick.Joystick(i) for i in range(pygame.joystick.get_count())]
+				
+			elif event.type == pygame.QUIT or (event.type == pygame.KEYDOWN and event.key == pygame.K_ESCAPE): # Quit if event is QUIT or if ESCAPE is pressed
+				pygame.quit()
+				sys.exit()
 
-        elif event.type == pygame.JOYDEVICEADDED or event.type == pygame.JOYDEVICEREMOVED: # Update joysticks
-            joysticks = [pygame.joystick.Joystick(i) for i in range(pygame.joystick.get_count())]
-            
-        elif event.type == pygame.QUIT or (event.type == pygame.KEYDOWN and event.key == pygame.K_ESCAPE): # Quit if event is QUIT or if ESCAPE is pressed
-            pygame.quit()
-            sys.exit()
+		# Update pygame
+		pygame.display.update()
+		clock.tick(60)
 
-    # Update pygame
-    pygame.display.update()
-    clock.tick(60)
+if __name__ == "__main__":
+	main()

@@ -2,29 +2,14 @@ import sys
 import pygame
 import pprint
 from pygame.locals import *
-from pygame import mixer
 from dataclasses import dataclass
+from models.SoundButton import SoundButton
 
 # Init pygame
 pygame.init()
 pygame.display.set_caption('Soundboard')
 screen = pygame.display.set_mode((500, 500))
 clock = pygame.time.Clock()
-
-# IsPlaying toggles sound if looping is true and hold is false
-# if Hold is True, button only plays when held down
-# -1 for infinite looping any other int for that number of loops plus one
-@dataclass
-class SoundButton:
-    Sound : ...
-    State   : bool = False     # If the sound is being played
-    Toggled : bool = False     # Was the sound toggled on - If so `State = True` until it's toggled back off
-    IsMuteable : bool = True 
-    NumLoops : int = -1
-    Toggle : bool = False
-
-    def __init__(self, soundPath):
-        self.Sound = mixer.Sound(soundPath)
 
 # Sound Buttons - Main array index is the joystick instance_id, inner array is the button id
 sound_buttons = [

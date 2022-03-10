@@ -2,29 +2,14 @@ import sys
 import pygame
 import pprint
 from pygame.locals import *
-from pygame import mixer
 from dataclasses import dataclass
+from models.SoundButton import SoundButton
 
 # Init pygame
 pygame.init()
 pygame.display.set_caption('Soundboard')
 screen = pygame.display.set_mode((500, 500))
 clock = pygame.time.Clock()
-
-# IsPlaying toggles sound if looping is true and hold is false
-# if Hold is True, button only plays when held down
-# -1 for infinite looping any other int for that number of loops plus one
-@dataclass
-class SoundButton:
-    Sound : ...
-    State   : bool = False     # If the sound is being played
-    Toggled : bool = False     # Was the sound toggled on - If so `State = True` until it's toggled back off
-    IsMuteable : bool = True 
-    NumLoops : int = -1
-    Toggle : bool = False
-
-    def __init__(self, soundPath):
-        self.Sound = mixer.Sound(soundPath)
 
 # Sound Buttons - Main array index is the joystick instance_id, inner array is the button id
 sound_buttons = [
@@ -133,25 +118,28 @@ def process_button_event(event, button_state):
         except IndexError:
             print(f"Button {event.button} [instance_id: {event.instance_id}] not yet implemented!")
 
+def main():
+	# Main render loop
+	while True:
+		# Render toggle mode text
+		screen.fill((0, 0, 0))
+		screen.blit(font.render(f"in_toggle_mode: {in_toggle_mode}", True, (255, 255, 255)), (0,0))
 
-# Main render loop
-while True:
-    # Render toggle mode text
-    screen.fill((0, 0, 0))
-    screen.blit(font.render(f"in_toggle_mode: {in_toggle_mode}", True, (255, 255, 255)), (0,0))
+		# Process pygame events
+		for event in pygame.event.get():
+			if event.type == pygame.JOYBUTTONDOWN or event.type == pygame.JOYBUTTONUP: # Process button event
+				process_button_event(event, event.type == pygame.JOYBUTTONDOWN)
 
-    # Process pygame events
-    for event in pygame.event.get():
-        if event.type == pygame.JOYBUTTONDOWN or event.type == pygame.JOYBUTTONUP: # Process button event
-            process_button_event(event, event.type == pygame.JOYBUTTONDOWN)
+			elif event.type == pygame.JOYDEVICEADDED or event.type == pygame.JOYDEVICEREMOVED: # Update joysticks
+				joysticks = [pygame.joystick.Joystick(i) for i in range(pygame.joystick.get_count())]
+				
+			elif event.type == pygame.QUIT or (event.type == pygame.KEYDOWN and event.key == pygame.K_ESCAPE): # Quit if event is QUIT or if ESCAPE is pressed
+				pygame.quit()
+				sys.exit()
 
-        elif event.type == pygame.JOYDEVICEADDED or event.type == pygame.JOYDEVICEREMOVED: # Update joysticks
-            joysticks = [pygame.joystick.Joystick(i) for i in range(pygame.joystick.get_count())]
-            
-        elif event.type == pygame.QUIT or (event.type == pygame.KEYDOWN and event.key == pygame.K_ESCAPE): # Quit if event is QUIT or if ESCAPE is pressed
-            pygame.quit()
-            sys.exit()
+		# Update pygame
+		pygame.display.update()
+		clock.tick(60)
 
-    # Update pygame
-    pygame.display.update()
-    clock.tick(60)
+if __name__ == "__main__":
+	main()

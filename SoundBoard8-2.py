@@ -80,7 +80,7 @@ font = pygame.font.SysFont('Comic Sans MS', 30)
 
 # event - The pygame event
 # button_state - True if "down", False if "up"
-def process_button_event(event, button_state):
+def process_joybutton_event(event, button_state):
     global in_toggle_mode
     global is_mixer_paused
 
@@ -99,7 +99,7 @@ def process_button_event(event, button_state):
 
     elif event.button == 9 and event.instance_id == 0: # Toggle toggle_mode state
         in_toggle_mode = button_state
-
+    
     else:
         try:
             button = sound_buttons[event.instance_id][event.button]
@@ -128,7 +128,7 @@ def main():
 		# Process pygame events
 		for event in pygame.event.get():
 			if event.type == pygame.JOYBUTTONDOWN or event.type == pygame.JOYBUTTONUP: # Process button event
-				process_button_event(event, event.type == pygame.JOYBUTTONDOWN)
+				process_joybutton_event(event, event.type == pygame.JOYBUTTONDOWN)
 
 			elif event.type == pygame.JOYDEVICEADDED or event.type == pygame.JOYDEVICEREMOVED: # Update joysticks
 				joysticks = [pygame.joystick.Joystick(i) for i in range(pygame.joystick.get_count())]

@@ -1,4 +1,3 @@
-from tkinter.ttk import setup_master
 import pygame
 from models.SoundButton import SoundButton
 

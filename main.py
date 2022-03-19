@@ -156,61 +156,61 @@ def main():
         for event in pygame.event.get():
             if event.type == pygame.JOYBUTTONDOWN or event.type == pygame.JOYBUTTONUP: # Process button event
                 handle_joy_button_event(event)
+            
+            # elif event.type == pygame.KEYDOWN or event.type == pygame.KEYUP:
+            #     # Map keyboard to joystick - It's buggy, but good enough for testing purposes (without joysticks)
+
+            #     # Keys F1-F12 are the joy selector keys
+            #     # Numpad keys 0 - 9 are mapped to joy buttons
                 
-            elif event.type == pygame.KEYDOWN or event.type == pygame.KEYUP:
-                # Map keyboard to joystick - It's buggy, but good enough for testing purposes (without joysticks)
-
-                # Keys F1-F12 are the joy selector keys
-                # Numpad keys 0 - 9 are mapped to joy buttons
+            #     joy_selector_mapping = (
+            #             pygame.K_F1,
+            #             pygame.K_F2,
+            #             pygame.K_F3,
+            #             pygame.K_F4,
+            #             pygame.K_F5,
+            #             pygame.K_F6,
+            #             pygame.K_F7,
+            #             pygame.K_F8,
+            #             pygame.K_F9,
+            #             pygame.K_F10,
+            #             pygame.K_F11,
+            #             pygame.K_F12,
+            #     )
+            #     # Figure out selected joy
+            #     if event.type == pygame.KEYDOWN:
+            #         if event.key in joy_selector_mapping:
+            #             selected_inst_id = joy_selector_mapping.index(event.key)
+            #             return
+            #     else:
+            #         selected_inst_id = None
                 
-                joy_selector_mapping = (
-                        pygame.K_F1,
-                        pygame.K_F2,
-                        pygame.K_F3,
-                        pygame.K_F4,
-                        pygame.K_F5,
-                        pygame.K_F6,
-                        pygame.K_F7,
-                        pygame.K_F8,
-                        pygame.K_F9,
-                        pygame.K_F10,
-                        pygame.K_F11,
-                        pygame.K_F12,
-                )
-                # Figure out selected joy
-                if event.type == pygame.KEYDOWN:
-                    if event.key in joy_selector_mapping:
-                        selected_inst_id = joy_selector_mapping.index(event.key)
-                        return
-                else:
-                    selected_inst_id = None
-                
-                if not selected_inst_id: # Issue here: If F key is released before the numpad buttons the button release is never going to be registered for the mapped joy button
-                    return
+            #     if not selected_inst_id: # Issue here: If F key is released before the numpad buttons the button release is never going to be registered for the mapped joy button
+            #         return
 
-                joy_button_mapping = (
-                    pygame.K_KP0,
-                    pygame.K_KP1,
-                    pygame.K_KP2,
-                    pygame.K_KP3,
-                    pygame.K_KP4,
-                    pygame.K_KP5,
-                    pygame.K_KP6,
-                    pygame.K_KP7,
-                    pygame.K_KP8,
-                    pygame.K_KP9,
-                )
-                if event.key not in joy_button_mapping:
-                    return
+            #     joy_button_mapping = (
+            #         pygame.K_KP0,
+            #         pygame.K_KP1,
+            #         pygame.K_KP2,
+            #         pygame.K_KP3,
+            #         pygame.K_KP4,
+            #         pygame.K_KP5,
+            #         pygame.K_KP6,
+            #         pygame.K_KP7,
+            #         pygame.K_KP8,
+            #         pygame.K_KP9,
+            #     )
+            #     if event.key not in joy_button_mapping:
+            #         return
 
-                event.type = pygame.JOYBUTTONDOWN if event.type == pygame.KEYDOWN else pygame.JOYBUTTONUP
-                event.instance_id = selected_inst_id
-                event.button = joy_button_mapping.index(event.key)
+            #     event.type = pygame.JOYBUTTONDOWN if event.type == pygame.KEYDOWN else pygame.JOYBUTTONUP
+            #     event.instance_id = selected_inst_id
+            #     event.button = joy_button_mapping.index(event.key)
 
-                print(f"keyboard => joy: {event.button}, {event.instance_id}")
+            #     print(f"keyboard => joy: {event.button}, {event.instance_id}")
 
-                # Now dispatch it as a joy event
-                handle_joy_button_event(event)
+            #     # Now dispatch it as a joy event
+            #     handle_joy_button_event(event)
 
             elif event.type == pygame.JOYDEVICEADDED or event.type == pygame.JOYDEVICEREMOVED: # Update joysticks
                 joysticks = [pygame.joystick.Joystick(i) for i in range(pygame.joystick.get_count())]
